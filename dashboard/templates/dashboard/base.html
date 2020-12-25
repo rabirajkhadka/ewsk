@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,, initial-scale=1.0" />
+    <title>Early Warning System</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/jquery.dataTables.css' %}"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-md navbar-dark bg-company-red">
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <div class="navbar-nav mr-auto heading">
+            <h2>EARLY WARNING SYSTEM</h2>
+          </div>
+          <div class="navbar-nav ml-auto">
+            <a class="nav-link home" href="/dashboard/"><b>HOME</b></a>
+
+            <a href="/statistics/" class="btn btn-default">Statistics</a>
+          </div>
+        </div>
+      </nav>
+      {% block content %}{% endblock content %}
+    </div>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'js/statistics.js' %}"></script>
+  </body>
+</html>

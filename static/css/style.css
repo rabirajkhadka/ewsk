@@ -1,0 +1,61 @@
+
+.bg-company-red {
+    background-color: rgb(202, 106, 106) !important;
+}
+.btn-default{
+    background-color: rgb(245, 240, 240) !important;
+}
+h1{
+    
+    font-family: "Fantasy";
+    font-size: 25px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+h2, .home{
+    color: rgb(255, 255, 255);
+    font-family: "Fantasy";
+}
+.box-element{
+    background-color: rgb(11, 218, 114) !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.container-fluid{
+
+    padding-right:0;
+    padding-left:0;
+    margin-right:auto;
+    margin-left:auto;
+    border: 2px solid #B22222;
+    height:100%;
+
+   
+}
+#dashboard{
+   margin: 10px;
+}
+
+#river-img{
+    background: url("/static/images/flood.jpg") 50% 0 no-repeat fixed;
+    color: white;
+    height: 150px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin: 10px;
+    background-repeat:no-repeat;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+   
+    }
+#statisticsTable{
+    
+        border: 1px solid black;
+        
+}
