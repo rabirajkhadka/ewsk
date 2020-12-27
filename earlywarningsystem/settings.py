@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'earlywarningsystem.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ewskanchanpur',
+        'NAME': 'ews',
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',

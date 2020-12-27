@@ -3,15 +3,23 @@ from django.db import models
 
 class Dataset(models.Model):
     id = models.AutoField(primary_key=True)
+    date_time = models.DateTimeField(auto_now_add=True)
     water_level = models.DecimalField(max_digits=20, decimal_places=12)
-    date = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(null=True, blank=True)
+    delay_time = models.DateTimeField(auto_now_add=True)
 
 
 class River(models.Model):
     rid = models.AutoField(primary_key=True)
     river_name = models.CharField(max_length=200, null=True)
     river_location = models.CharField(max_length=200, null=True)
+    river_trend = models.CharField(max_length=200, null=True)
+
+
+class WarningMessage(models.Model):
+    id = models.AutoField(primary_key=True)
+    date_time = models.DateTimeField(auto_now_add=True)
+    warning_id = models.IntegerField
+    warninig_value = models.FloatField
     river_trend = models.CharField(max_length=200, null=True)
 
 
@@ -54,3 +62,9 @@ class WaterLevel(models.Model):
         WarningLevel, on_delete=models.CASCADE, blank=True, null=True)
     danger_id = models.ForeignKey(
         DangerLevel, on_delete=models.CASCADE, blank=True, null=True)
+
+
+class WarningDataset(models.Model):
+    id = models.AutoField(primary_key=True)
+    value = models.FloatField()
+    image = models.ImageField()
