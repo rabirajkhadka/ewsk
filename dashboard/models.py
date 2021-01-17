@@ -1,11 +1,13 @@
 from django.db import models
+from threading import Thread, current_thread
 
 
 class Dataset(models.Model):
     id = models.AutoField(primary_key=True)
     date_time = models.DateTimeField(auto_now_add=True)
     water_level = models.DecimalField(max_digits=20, decimal_places=12)
-    delay_time = models.DateTimeField(auto_now_add=True)
+    delay_time = models.DateField()
+
 
 
 class River(models.Model):
