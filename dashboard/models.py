@@ -6,8 +6,13 @@ class Dataset(models.Model):
     id = models.AutoField(primary_key=True)
     date_time = models.DateTimeField(auto_now_add=True)
     water_level = models.DecimalField(max_digits=20, decimal_places=12)
-    delay_time = models.DateField()
+    delay_time = models.IntegerField()
 
+
+# @property
+# def get_average(self):
+   # avg = self.water_level * self.delay_time
+    # return avg
 
 
 class River(models.Model):
