@@ -1,11 +1,55 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>Drainage Warning System</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
+
 <body>
-    <h1>Homepage</h1>
+    <label for="station">Choose Station:</label>
+    <select name="station" id="station">
+    </select>
+    <button id="dataBtn" onclick="allData()">Get Data</button>
+    <ul>
+        <li><a class='active' href="home">Home</a></li>
+        <li><a href="data">Data</a></li>
+    </ul>
+
+    <div class="homeData">
+        <div class="homeImage"></div>
+        <div class="dataContainer">
+            <div class="mapData">
+                img data
+            </div>
+            <div class="chanceImg">
+        
+            </div>
+            <div class="floodData">
+                <div>
+                    <div class="label" id="waterLabel">Water Level</div>
+                    <div class="data" id="waterData">DataX</div>
+                </div>
+                <div>
+                    <div class="label" id="trendLabel">Trend</div>
+                    <div class="data" id="trendData">DataX</div>
+                </div>
+                <div>
+                    <div class="label" id="avgLabel">Average</div>
+                    <div class="data" id="avgData">DataX</div>
+                </div>
+                <div>
+                    <div class="label">Time</div>
+                    <div class="data" >Last 24hr</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'homeData.js' %}"></script>
 </body>
+
 </html>
+    
