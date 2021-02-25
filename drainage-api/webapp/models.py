@@ -23,8 +23,8 @@ class DataSet(models.Model):
         Station, default='S1', on_delete=models.SET_DEFAULT)
     dateTime = models.DateTimeField(default=timezone.now)
     dateTime.editable = False  # to edit dates to try
-    drainageLevel = models.DecimalField(max_digits=10, decimal_places=3)
-    delayTime = models.DecimalField(max_digits=10, decimal_places=3)
+    drainageLevel = models.DecimalField(max_digits=100, decimal_places=3)
+    delayTime = models.DecimalField(max_digits=100, decimal_places=3)
 
     def __str__(self):
         return str(self.station) + ' ' + str(self.dateTime)
@@ -121,11 +121,14 @@ class DataSet(models.Model):
             data = pd.read_json(
                 f'http://127.0.0.1:8000/api/datasetstation/{stationData}/?format=json')
             data = data.drop(columns=['id', 'delayTime', 'station'])
+            data.loc[len(data.index)] = [self.dateTime, self.drainageLevel]
+            print(data)
+            print(type(self.drainageLevel))
             x = mdates.date2num(data['dateTime'])
             # gets linear line values
             coefficients = np.polyfit(
                 x, data['drainageLevel'], 1)  # m and c values
-
+            print(type(data))
             m = round(coefficients[0], 3)
             c = round(coefficients[1], 3)
             print(m, c)
@@ -136,22 +139,23 @@ class DataSet(models.Model):
                 trendValue=m,
                 yIntercept=c,
                 dateTime=datetime.now())
+        super().save(*args, **kwargs)
 
 
 class Average(models.Model):
     #averageID = models.CharField(primary_key=True, max_length=255)
     station = models.ForeignKey(
         Station, default=1, on_delete=models.SET_DEFAULT)
-    oneHour = models.DecimalField(max_digits=10, decimal_places=3)
-    threeHour = models.DecimalField(max_digits=10, decimal_places=3)
-    sixHour = models.DecimalField(max_digits=10, decimal_places=3)
-    nineHour = models.DecimalField(max_digits=10, decimal_places=3)
-    twelveHour = models.DecimalField(max_digits=10, decimal_places=3)
-    oneDay = models.DecimalField(max_digits=10, decimal_places=3)
-    oneWeek = models.DecimalField(max_digits=10, decimal_places=3)
-    twoWeek = models.DecimalField(max_digits=10, decimal_places=3)
-    threeWeek = models.DecimalField(max_digits=10, decimal_places=3)
-    fourWeek = models.DecimalField(max_digits=10, decimal_places=3)
+    oneHour = models.DecimalField(max_digits=100, decimal_places=3)
+    threeHour = models.DecimalField(max_digits=100, decimal_places=3)
+    sixHour = models.DecimalField(max_digits=100, decimal_places=3)
+    nineHour = models.DecimalField(max_digits=100, decimal_places=3)
+    twelveHour = models.DecimalField(max_digits=100, decimal_places=3)
+    oneDay = models.DecimalField(max_digits=100, decimal_places=3)
+    oneWeek = models.DecimalField(max_digits=100, decimal_places=3)
+    twoWeek = models.DecimalField(max_digits=100, decimal_places=3)
+    threeWeek = models.DecimalField(max_digits=100, decimal_places=3)
+    fourWeek = models.DecimalField(max_digits=100, decimal_places=3)
     dateTime = models.DateTimeField(auto_now_add=False)
 
     def __str__(self):
@@ -162,9 +166,9 @@ class DrainageTrend(models.Model):
     #trendID = models.CharField(primary_key=True, max_length=255)
     station = models.ForeignKey(
         Station, default=1, on_delete=models.SET_DEFAULT)
-    trendValue = models.DecimalField(max_digits=10, decimal_places=3)
+    trendValue = models.DecimalField(max_digits=100, decimal_places=3)
     yIntercept = models.DecimalField(
-        max_digits=10, decimal_places=3, default=0.000)
+        max_digits=100, decimal_places=3, default=0.000)
     dateTime = models.DateTimeField(auto_now_add=False)
 
     def __str__(self):
