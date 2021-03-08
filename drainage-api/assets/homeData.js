@@ -34,6 +34,7 @@ const allData = async () => {
 
     //water Data
     console.log(trendData[0]["trendValue"]);
+    
 
     document.getElementById("waterData").innerHTML=levelData[0]['drainageLevel'];
     if (parseFloat(levelData[0]['drainageLevel'])>5){
@@ -97,6 +98,37 @@ const allData = async () => {
         document.getElementById("trendLabel").style.borderLeftColor = "#31639c";
     }
     console.log('updated');
+    var data = [
+        {
+            type: "indicator",
+            mode: "number+gauge",
+            value: parseFloat(levelData[0]['drainageLevel']),
+            domain: { x: [0, 1], y: [0, 1] },
+            delta: { reference: 20, position: "top" },
+            title: {
+            text:
+                "<b>Water</b><br><b>Level</b>",
+            font: { size: 12 }
+            },
+            gauge: {
+            shape: "bullet",
+            axis: { range: [-20, 20] },
+            threshold: {
+            },
+            bgcolor: "white",
+            steps: [{ range: [-5, 5], color: "lightblue" },
+                    { range: [-20, -5], color: "lightgreen" },
+                    { range: [5, 20], color: "red" }
+                    ],
+            bar: { color: "blue" }
+            }
+        }
+        ];
+
+    var layout = { height:200 };
+
+    Plotly.newPlot('bulletGraph', data, layout);
+
 }
 comboBoxCreate();
 

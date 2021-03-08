@@ -14,25 +14,18 @@
 
 </head>
 <body>
-    <h1>Data</h1>
+    <label for="station">Choose Station:</label>
+    <select name="station" id="station">
+    </select>
+    <button id="averageBtn" onclick="averageTable()">Update</button>
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a class='active' href="/data">Data</a></li>
+        <li><a class='active' href="/data">Statistics</a></li>
     </ul>
 
     <div id='myDiv'>
-        
     </div>
-
-    
-
     <div class="Average">
-        
-            <label for="station">Choose Station:</label>
-            <select name="station" id="station">
-            </select>
-        
-        <button id="averageBtn" onclick="averageTable()">Get Average</button>
         <table id="averageTable">
             <tr>
                 <th>Average ID</th>

@@ -9,48 +9,6 @@ from .serializers import averageSerializer, dataSetSerializer, stationSerializer
 from datetime import datetime, timedelta
 
 
-def homePage(request):
-    return render(request, 'home.html')
-
-
-def dataPage(request):
-    return render(request, 'data.html')
-
-
-class averageList(APIView):
-
-    def get(self, request, stationID):
-
-        today = datetime.now()
-        oneHourTime = today - timedelta(hours=1)
-        data = Average.objects.all().filter(
-            station__exact=stationID).filter(dateTime__range=(oneHourTime, today)).order_by('-dateTime')
-        if data.count() == 0:
-            return HttpResponseNotFound('<h1>No Data Found</h1>')
-
-        else:
-            serializer = averageSerializer(data, many=True)
-            return Response(serializer.data)
-
-
-class dataSetStation(APIView):
-
-    def get(self, request, stationID):
-
-        today = datetime.now()
-        oneHourTime = today - timedelta(hours=1)
-        # filter(dateTime__range = (oneHourTime, today)).
-        data = DataSet.objects.all().filter(
-            station__exact=stationID).filter(dateTime__range=(oneHourTime, today)).order_by('-dateTime')
-
-        if data.count() == 0:
-            return HttpResponseNotFound('<h1>No Data Found</h1>')
-
-        else:
-            serializer = dataSetSerializer(data, many=True)
-            return Response(serializer.data)
-
-
 class dataSetList(APIView):
 
     def get(self, request):
@@ -74,15 +32,46 @@ class stationList(APIView):
         return Response(serializer.data)
 
 
+def homePage(request):
+    return render(request, 'home.html')
+
+
+def dataPage(request):
+    return render(request, 'data.html')
+
+
+class averageList(APIView):
+
+    def get(self, request, stationID):
+
+        today = datetime.now()
+        oneHourTime = today - timedelta(hours=1)
+        data = Average.objects.all().filter(
+            station__exact=stationID).filter(dateTime__range=(oneHourTime, today)).order_by('-dateTime')
+        serializer = averageSerializer(data, many=True)
+        return Response(serializer.data)
+
+
+class dataSetStation(APIView):
+
+    def get(self, request, stationID):
+
+        today = datetime.now()
+        oneHourTime = today - timedelta(hours=1)
+        # filter(dateTime__range = (oneHourTime, today)).
+        data = DataSet.objects.all().filter(
+            station__exact=stationID).filter(dateTime__range=(oneHourTime, today)).order_by('-dateTime')
+
+        serializer = dataSetSerializer(data, many=True)
+        return Response(serializer.data)
+
+
 class trendList(APIView):
 
     def get(self, request, stationID):
 
         data = DrainageTrend.objects.all().filter(
             station__exact=stationID).order_by('-dateTime')
-        if data.count() == 0:
-            return HttpResponseNotFound('<h1>No Data Found</h1>')
 
-        else:
-            serializer = trendSerializer(data, many=True)
-            return Response(serializer.data)
+        serializer = trendSerializer(data, many=True)
+        return Response(serializer.data)

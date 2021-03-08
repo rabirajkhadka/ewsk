@@ -2,10 +2,10 @@ from rest_framework import serializers
 from .models import Average, DataSet, Station, DrainageTrend
 
 
-class averageSerializer(serializers.ModelSerializer):
+class stationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Average
-        fields = '__all__'
+        model = Station
+        fields = ['stationID']
 
 
 class dataSetSerializer(serializers.ModelSerializer):
@@ -14,10 +14,10 @@ class dataSetSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class stationSerializer(serializers.ModelSerializer):
+class averageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Station
-        fields = ['stationID']
+        model = Average
+        fields = '__all__'
 
 
 class trendSerializer(serializers.ModelSerializer):

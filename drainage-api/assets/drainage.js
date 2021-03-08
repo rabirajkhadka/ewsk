@@ -21,7 +21,7 @@ comboBoxCreate();
 
 
 const averageTable = async () =>{
-    
+    graphCreator();
     const station=document.getElementById('station').value;
     const response = await fetch(`http://127.0.0.1:8000/api/average/${station}/?format=json`);
     const averageData = await response.json();
@@ -101,6 +101,37 @@ const graphCreator = async () => {
         mode: 'lines+markers'
     }
     ];
-    Plotly.newPlot('myDiv', data);
+    var layout = {
+        title: {
+            text:`Past 1 Hour Data of ${station}`,
+            font: {
+                family: 'Courier New, monospace',
+                size: 20,
+            },
+            
+        },
+        xaxis: {
+            title: {
+            text: 'Time',
+            font: {
+                family: 'Courier New, monospace',
+                size: 18,
+                color: '#7f7f7f'
+            }
+            },
+        },
+        yaxis: {
+            title: {
+            text: 'Water Level',
+            font: {
+                family: 'Courier New, monospace',
+                size: 18,
+                color: '#7f7f7f'
+            }
+            }
+        }
+    };
+
+    Plotly.newPlot('myDiv', data,layout);
 
 }

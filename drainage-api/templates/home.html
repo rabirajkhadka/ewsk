@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title>Drainage Warning System</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 </head>
 
 <body>
@@ -15,11 +16,15 @@
     <button id="dataBtn" onclick="allData()">Get Data</button>
     <ul>
         <li><a class='active' href="home">Home</a></li>
-        <li><a href="data">Data</a></li>
+        <li><a href="data">Statistics</a></li>
     </ul>
 
     <div class="homeData">
         <div class="homeImage"></div>
+        <div class="bullet-container">
+            <div id="bulletGraph"></div>
+        </div>
+        
         <div class="dataContainer">
             <div class="mapData">
                 img data
