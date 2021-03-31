@@ -14,13 +14,13 @@ const comboBoxCreate = async()=>{
     setInterval(()=>allData(), 180000);
 }
 
-const probabilityImage = () => {
-    document.getElementsByClassName("chanceImg")[0].style.backgroundImage = "url('static/img/DangerImage.gif')";
-}
+// const probabilityImage = () => {
+//     document.getElementsByClassName("chanceImg")[0].style.backgroundImage = "url('static/img/DangerImage.gif')";
+// }
 
 const allData = async () => {
   
-    probabilityImage();
+    // probabilityImage();
 
     const station=document.getElementById('station').value;
     const levelResponse = await fetch(`http://127.0.0.1:8000/api/datasetstation/${station}/?format=json`);
@@ -98,36 +98,99 @@ const allData = async () => {
         document.getElementById("trendLabel").style.borderLeftColor = "#31639c";
     }
     console.log('updated');
-    var data = [
-        {
-            type: "indicator",
-            mode: "number+gauge",
-            value: parseFloat(levelData[0]['drainageLevel']),
-            domain: { x: [0, 1], y: [0, 1] },
-            delta: { reference: 20, position: "top" },
-            title: {
-            text:
-                "<b>Water</b><br><b>Level</b>",
-            font: { size: 12 }
-            },
-            gauge: {
-            shape: "bullet",
-            axis: { range: [-20, 20] },
-            threshold: {
-            },
-            bgcolor: "white",
-            steps: [{ range: [-5, 5], color: "lightblue" },
-                    { range: [-20, -5], color: "lightgreen" },
-                    { range: [5, 20], color: "red" }
-                    ],
-            bar: { color: "blue" }
+    Highcharts.setOptions({
+        chart: {
+            inverted: true,
+            type: 'bullet'
+        },
+        title: {
+            text: null
+        },
+        legend: {
+            enabled: false
+        },
+        yAxis: {
+            gridLineWidth: 0
+        },
+        plotOptions: {
+            series: {
+            borderWidth: 0,
+            color: '#000',
+            targetOptions: {
+                width: '200%'
             }
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
         }
-        ];
+        });
 
-    var layout = { height:200 };
+    Highcharts.chart('container1', {
+        chart: {
+            marginTop: 40
+        },
+        xAxis: {
+            categories: ['<span>Water</span><br/>Level']
+        },
+        yAxis: {
+            plotBands: [{
+            from: -5,
+            to: 5,
+            color: 'lightblue'
+            }, {
+            from: -20,
+            to: -5,
+            color: 'lightgreen'
+            }, {
+            from: 5,
+            to: 20,
+            color: 'red'
+            }],
+            title: null
+        },
+        series: [{
+            data: [{
+            y: parseFloat(levelData[0]['drainageLevel']),
+            target: 0
+            }]
+        }]
+        
+        });
 
-    Plotly.newPlot('bulletGraph', data, layout);
+    // var data = [
+    //     {
+    //         type: "indicator",
+    //         mode: "gauge",
+    //         value: parseFloat(levelData[0]['drainageLevel']),
+    //         domain: { x: [0, 1], y: [0, 1] },
+    //         delta: { reference: 20, position: "top" },
+    //         title: {
+    //         text:
+    //             "<b>Water</b><br><b>Level</b>",
+    //         font: { size: 12 }
+    //         },
+    //         gauge: {
+    //         shape: "bullet",
+    //         axis: { range: [-20, 20] },
+    //         threshold: {
+    //         },
+    //         bgcolor: "white",
+    //         steps: [{ range: [-5, 5], color: "lightblue" },
+    //                 { range: [-20, -5], color: "lightgreen" },
+    //                 { range: [5, 20], color: "red" }
+    //                 ],
+    //         bar: { color: "blue" }
+    //         }
+    //     }
+    //     ];
+
+    // var layout = { width: 450, height: 200 };
+
+    // Plotly.newPlot('bulletGraph', data, layout);
 
 }
 comboBoxCreate();

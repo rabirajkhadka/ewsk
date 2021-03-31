@@ -21,6 +21,7 @@ comboBoxCreate();
 
 
 const averageTable = async () =>{
+    
     graphCreator();
     const station=document.getElementById('station').value;
     const response = await fetch(`http://127.0.0.1:8000/api/average/${station}/?format=json`);

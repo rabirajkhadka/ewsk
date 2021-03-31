@@ -7,32 +7,98 @@
     <title>Drainage Warning System</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    
 </head>
 
 <body>
-    <label for="station">Choose Station:</label>
+    <!-- <label for="station">Choose Station:</label>
     <select name="station" id="station">
     </select>
-    <button id="dataBtn" onclick="allData()">Get Data</button>
-    <ul>
-        <li><a class='active' href="home">Home</a></li>
-        <li><a href="data">Statistics</a></li>
-    </ul>
+    <button class="btn btn-info" id="dataBtn" onclick="allData()">Get Data</button> -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark" style="background-color:#3c89aa;">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Collapsible wrapper -->
+            <div class="justify-content-start">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <!-- Link -->
+                    <li class="nav-item">
+                        <div class="container d-flex">
+                            <label class="m-auto" style='color:white;' for="station">Choose Station:</label>
+                            <select name="station" id="station"></select>
+                            <button class="btn btn-info" id="dataBtn" onclick="allData()">Get Data</button>
+                        </div>
+                </ul>
+            
+            </div>
+            <div class="d-flex flex-row flex-row-reverse" >
+                <a class="nav-link" style='color:white;' href="/">Home</a>
+                <a class="nav-link" style='color:white;' href="/data">Statistics</a>
+            </div>
+        </div>
+        <!-- Container wrapper -->
+    </nav>
 
+    <div class="container-fluid" style='margin-top:1em'>
+        <div class="row">
+            <div class="col-md-12 homeImage" style='border: 0.2rem solid #3c89aa;'>
+                img
+            </div>
+        </div>
+        <div class="row">
+            <figure class="highcharts-figure" style='border: 0.2rem solid #3c89aa;;'>
+                <div id="container1"></div>
+            </figure>
+            <!-- <div class="col-md-12 bullet-container" style='border: 0.2rem solid green;'>
+                <div id="bulletGraph"></div>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-4" style='border: 0.2rem solid #3c89aa;;'>
+            </div>
+            <div class="col-md-4" style='border: 0.2rem solid #3c89aa;;display: flex;align-items: center;'>
+                <img src="static/img/DangerImage.gif" class="rounded mx-auto d-block" >
+            </div>
+            <div class="col-md-4" style='border: 0.2rem solid #3c89aa;;'>
+                <div class="floodData">
+                    <div>
+                        <div class="label" id="waterLabel">Water Level</div>
+                        <div class="data" id="waterData">DataX</div>
+                    </div>
+                    <div>
+                        <div class="label" id="trendLabel">Trend</div>
+                        <div class="data" id="trendData">DataX</div>
+                    </div>
+                    <div>
+                        <div class="label" id="avgLabel">Average</div>
+                        <div class="data" id="avgData">DataX</div>
+                    </div>
+                    <div>
+                        <div class="label">Time</div>
+                        <div class="data">Last 24hr</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 
     <div class="homeData">
-        <div class="homeImage"></div>
+         <div class="homeImage"></div>
         <div class="bullet-container">
             <div id="bulletGraph"></div>
-        </div>
-        
+        </div> -->
+<!--         
         <div class="dataContainer">
             <div class="mapData">
                 img data
             </div>
             <div class="chanceImg">
         
-            </div>
-            <div class="floodData">
+            </div> -->
+            <!-- <div class="floodData">
                 <div>
                     <div class="label" id="waterLabel">Water Level</div>
                     <div class="data" id="waterData">DataX</div>
@@ -49,11 +115,17 @@
                     <div class="label">Time</div>
                     <div class="data" >Last 24hr</div>
                 </div>
-            </div>
-        </div>
-    </div>
+            </div> -->
+        <!-- </div>
+    </div> --> 
 
     <script src="{% static 'homeData.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/bullet.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </body>
 
 </html>
