@@ -21,6 +21,7 @@ const comboBoxCreate = async()=>{
 const allData = async () => {
   
     // probabilityImage();
+    try{
 
     const station=document.getElementById('station').value;
     const levelResponse = await fetch(`http://127.0.0.1:8000/api/datasetstation/${station}/?format=json`);
@@ -32,10 +33,18 @@ const allData = async () => {
     const trendResponse = await fetch(`http://127.0.0.1:8000/api/trend/${station}/?format=json`);
     const trendData = await trendResponse.json();
 
-    //water Data
-    console.log(trendData[0]["trendValue"]);
+    const numberResponse = await fetch(`http://127.0.0.1:8000/api/stationNumber/${station}/?format=json`);
+    const numberData = await numberResponse.json();
 
-    try{
+    console.log(numberData);
+
+    //water Data
+    console.log(trendData);
+
+    
+        document.getElementById("communityHero1").innerHTML=numberData[0]['communityHero1'];
+        document.getElementById("communityHero2").innerHTML=numberData[0]['communityHero2'];
+
 
         document.getElementById("timeLabel").style.backgroundColor = "#49b675";
         document.getElementById("timeLabel").style.borderColor = "#49b675";
@@ -180,6 +189,72 @@ const allData = async () => {
         document.getElementById("avgData").innerHTML='डाटा छैन';
         document.getElementById("trendData").innerHTML="डाटा छैन";
         document.getElementById("waterData").innerHTML='डाटा छैन';
+        Highcharts.setOptions({
+        chart: {
+            inverted: false,
+            type: 'bullet'
+        },
+        title: {
+            text: null
+        },
+        legend: {
+            enabled: false
+        },
+        yAxis: {
+            gridLineWidth: 0
+        },
+        plotOptions: {
+            series: {
+            borderWidth: 0,
+            color: '#000',
+            targetOptions: {
+                width: '200%'
+                
+            }
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        }
+        });
+
+    Highcharts.chart('container1', {
+        chart: {
+            marginTop: 40,
+            height:550,
+        },
+        xAxis: {
+            categories: ['<span>No</span><br/>Data']
+        },
+        yAxis: {
+            plotBands: [{
+            from: -5,
+            to: 5,
+            color: 'red'
+            }, {
+            from: -20,
+            to: -5,
+            color: 'red'
+            }, {
+            from: 5,
+            to: 20,
+            color: 'red'
+            }],
+            title: null
+        },
+        series: [{
+            
+            data: [{
+            y: null,
+            target: 0,
+            
+            }]
+        }]
+        
+        });
 
 
     }

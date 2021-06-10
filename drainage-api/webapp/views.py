@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Average, DataSet, Station, DrainageTrend
-from .serializers import averageSerializer, dataSetSerializer, stationSerializer, trendSerializer
+from .serializers import averageSerializer, dataSetSerializer, stationSerializer, trendSerializer, stationNumberSerializer
 from datetime import datetime, timedelta
 
 
@@ -29,6 +29,16 @@ class stationList(APIView):
     def get(self, request):
         data = Station.objects.all()
         serializer = stationSerializer(data, many=True)
+        return Response(serializer.data)
+
+
+class stationNumber(APIView):
+
+    def get(self, request, stationID):
+
+        data = Station.objects.all().filter(stationID__exact=stationID)
+        print('test')
+        serializer = stationNumberSerializer(data, many=True)
         return Response(serializer.data)
 
 

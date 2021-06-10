@@ -14,6 +14,10 @@ class Station(models.Model):
     stationID = models.CharField(primary_key=True, max_length=255)
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
+    communityHero1 = models.CharField(
+        max_length=255, default='John Doe, 980XXXXXX')
+    communityHero2 = models.CharField(
+        max_length=255, default='John Doe, 980XXXXXX')
 
     def __str__(self):
         return self.name

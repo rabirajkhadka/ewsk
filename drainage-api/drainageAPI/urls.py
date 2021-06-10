@@ -15,6 +15,8 @@ urlpatterns = [
             views.trendList.as_view()),
     re_path(r'api/average/(?P<stationID>[\w-]+)/$',
             views.averageList.as_view()),
+    re_path(r'api/stationNumber/(?P<stationID>[\w-]+)/$',
+            views.stationNumber.as_view()),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

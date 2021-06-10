@@ -8,6 +8,12 @@ class stationSerializer(serializers.ModelSerializer):
         fields = ['stationID']
 
 
+class stationNumberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Station
+        fields = '__all__'
+
+
 class dataSetSerializer(serializers.ModelSerializer):
     class Meta:
         model = DataSet
