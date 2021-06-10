@@ -34,9 +34,14 @@ const allData = async () => {
 
     //water Data
     console.log(trendData[0]["trendValue"]);
-    
 
-    document.getElementById("waterData").innerHTML=levelData[0]['drainageLevel'];
+    try{
+
+        document.getElementById("timeLabel").style.backgroundColor = "#49b675";
+        document.getElementById("timeLabel").style.borderColor = "#49b675";
+        document.getElementById("timeLabel").style.borderLeftColor = "#49b675";
+        document.getElementById("timeLabel").innerHTML='डाटा प्राप्त भईरहेको छ । पछिल्लो पटक प्राप्त डाटा: '+ new Date(levelData[0]['dateTime']);
+        document.getElementById("waterData").innerHTML=levelData[0]['drainageLevel'];
     if (parseFloat(levelData[0]['drainageLevel'])>5){
         
         document.getElementById("waterLabel").style.backgroundColor = "#ff726f";
@@ -100,7 +105,7 @@ const allData = async () => {
     console.log('updated');
     Highcharts.setOptions({
         chart: {
-            inverted: true,
+            inverted: false,
             type: 'bullet'
         },
         title: {
@@ -118,6 +123,7 @@ const allData = async () => {
             color: '#000',
             targetOptions: {
                 width: '200%'
+                
             }
             }
         },
@@ -131,7 +137,8 @@ const allData = async () => {
 
     Highcharts.chart('container1', {
         chart: {
-            marginTop: 40
+            marginTop: 40,
+            height:550,
         },
         xAxis: {
             categories: ['<span>Water</span><br/>Level']
@@ -153,13 +160,33 @@ const allData = async () => {
             title: null
         },
         series: [{
+            
             data: [{
             y: parseFloat(levelData[0]['drainageLevel']),
-            target: 0
+            target: 0,
+            
             }]
         }]
         
         });
+
+     }
+    
+    catch(err){
+        document.getElementById("timeLabel").style.backgroundColor = "#ff726f";
+        document.getElementById("timeLabel").style.borderColor = "#ff726f";
+        document.getElementById("timeLabel").style.borderLeftColor = "#8b0000";
+        document.getElementById("timeLabel").innerHTML='डाटा प्राप्त भईरहेको छैन । समस्या यस कम्प्युटरमा रहेको छ । समयको  डाटा छैन ।';
+        document.getElementById("avgData").innerHTML='डाटा छैन';
+        document.getElementById("trendData").innerHTML="डाटा छैन";
+        document.getElementById("waterData").innerHTML='डाटा छैन';
+
+
+    }
+
+    
+
+    
 
     // var data = [
     //     {

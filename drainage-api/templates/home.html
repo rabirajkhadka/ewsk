@@ -43,31 +43,64 @@
     </nav>
 
     <div class="container-fluid" style='margin-top:1em'>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12 homeImage" style='border: 0.2rem solid #3c89aa;'>
                 img
             </div>
-        </div>
-        <div class="row">
+        </div> -->
+        <!-- <div class="row">
             <figure class="highcharts-figure" style='border: 0.2rem solid #3c89aa;;'>
                 <div id="container1"></div>
             </figure>
-            <!-- <div class="col-md-12 bullet-container" style='border: 0.2rem solid green;'>
+            <div class="col-md-12 bullet-container" style='border: 0.2rem solid green;'>
                 <div id="bulletGraph"></div>
-            </div> -->
-        </div>
+            </div> 
+        </div> -->
         <div class="row">
-            <div class="col-md-4" style='border: 0.2rem solid #3c89aa;;'>
+            <div class="col-md-7" style='border: 0.2rem solid #3c89aa;'>
+                <div  style='border: 0.2rem solid #3c89aa;height:100%;display:flex;flex-direction: column;justify-content: space-between;'>
+                    <img src="static/img/DangerImage.gif" class="rounded mx-auto d-block" style='border: 0.2rem solid #3c89aa;' >
+                    
+                    <div class="row">
+                        <div class="col-md-6" style='border: 0.2rem solid #3c89aa;'>
+                            <div class="label" id="x">Community Help Numbers</div>
+                            <div class="label" id="x">John Doe, 980XXXXXX</div>
+                            <div class="label" id="x">John Doe, 980XXXXXX</div>
+                        </div>
+                        <div class="col-md-6" style='border: 0.2rem solid #3c89aa;'>
+                            <div class="label" id="x">Government Number</div>
+                            <div class="label" id="x">980XXXXXX</div>
+                            <div class="label" id="x">980XXXXXX</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+
             </div>
-            <div class="col-md-4" style='border: 0.2rem solid #3c89aa;;display: flex;align-items: center;'>
-                <img src="static/img/DangerImage.gif" class="rounded mx-auto d-block" >
+            <div class="col-md-1" style='border: 0.2rem solid #3c89aa;;'>
+                <figure class="highcharts-figure" >
+                    <div id="container1"  style='height:100%;'></div>
+                </figure>
             </div>
-            <div class="col-md-4" style='border: 0.2rem solid #3c89aa;;'>
-                <div class="floodData">
+
+
+            
+
+        
+
+
+            <div class="col-md-4" style='border: 0.2rem solid #3c89aa'>
+                <div style='border: 0.2rem solid #3c89aa;;display: flex;align-items: center;'>
+                    <img src="static/img/DangerImage.gif" class="rounded mx-auto d-block">
+                </div>
+                <div class="floodData"  style='border: 0.2rem solid #3c89aa;'>
                     <div>
                         <div class="label" id="waterLabel">Water Level</div>
                         <div class="data" id="waterData">DataX</div>
                     </div>
+                    
                     <div>
                         <div class="label" id="trendLabel">Trend</div>
                         <div class="data" id="trendData">DataX</div>
@@ -81,8 +114,16 @@
                         <div class="data">Last 24hr</div>
                     </div>
                 </div>
+                
             </div>
+            
+
+
         </div>
+        <div class="row floodData" style='border: 0.2rem solid #3c89aa;'>
+            
+                <div class="label" id="timeLabel"></div>
+            
     </div>
 <!-- 
     <div class="homeData">
