@@ -69,8 +69,7 @@ a:hover:not(.active) {
   border: 0.2rem solid green;
   border-radius: 1rem;
 }
-.floodData {
-}
+
 .floodData > div {
   display: flex;
   flex-direction: row;
@@ -100,4 +99,30 @@ td {
 
 #container1 {
   height: 7rem;
+}
+
+/*Business Card Css */
+.business-card {
+  border: 1px solid #cccccc;
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 4px;
+}
+.profile-img {
+  height: 60px;
+  border-radius: 50%;
+
+  background: white;
+}
+.job {
+  color: #666666;
+  font-size: 17px;
+}
+.mail {
+  font-size: 16px;
+}
+.map-img {
+  height: 400px;
+  width: 550px;
+  background: white;
 }

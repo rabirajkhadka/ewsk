@@ -18,6 +18,7 @@ class Station(models.Model):
         max_length=255, default='John Doe, 980XXXXXX')
     communityHero2 = models.CharField(
         max_length=255, default='John Doe, 980XXXXXX')
+    # image = models.ImageField()
 
     def __str__(self):
         return self.name

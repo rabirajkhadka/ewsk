@@ -36,10 +36,55 @@ const allData = async () => {
     const numberResponse = await fetch(`http://127.0.0.1:8000/api/stationNumber/${station}/?format=json`);
     const numberData = await numberResponse.json();
 
-    console.log(numberData);
+
+   
+
 
     //water Data
     console.log(trendData);
+
+    
+    function floodTimer() {
+        let trendIndex;
+
+        for (i = 0; i < trendData.length; i++) {
+            if(parseFloat(trendData[i].trendValue)<0.2 ){
+                if(i==0){
+                    console.log(i);
+                }
+                else{
+                    trendIndex=i-1;
+                }
+                break;
+            }
+        }
+
+        var countDownDate = new Date(trendData[trendIndex].dateTime).getTime();
+        var newdate=countDownDate + 60*60000;
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+                
+            // Get today's date and time
+            var now = new Date().getTime();
+                
+            // Find the distance between now and the count down date
+            var distance = newdate-now;
+                
+            // Time calculations for days, hours, minutes and seconds
+
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+            // Output the result in an element with id="demo"
+            document.getElementById("trendTimer").innerHTML=minutes + "m " + seconds + "s ";
+                
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                document.getElementById("trendTimer").innerHTML = "00:00!";
+            }
+        }, 1000);
+    }
+        
 
     
         document.getElementById("communityHero1").innerHTML=numberData[0]['communityHero1'];
@@ -94,19 +139,25 @@ const allData = async () => {
 
     //trend Data
     if (parseFloat(trendData[0]['trendValue'])>0.2){
-        document.getElementById("trendData").innerHTML="Increasing";
+        document.getElementById("trendData").innerHTML="बढ्दै";
         document.getElementById("trendLabel").style.backgroundColor = "#ff726f";
         document.getElementById("trendData").style.borderColor = "#ff726f";
         document.getElementById("trendLabel").style.borderLeftColor = "#8b0000";
+        floodTimer();
+        document.getElementById("trendTimer").style.backgroundColor = "#ff726f";
+        document.getElementById("trendTimer").style.borderColor = "#ff726f";
+        document.getElementById("timerLabel").style.backgroundColor = "#ff726f";
+        document.getElementById("timerLabel").style.borderColor = "#ff726f";
+        document.getElementById("timerLabel").style.borderLeftColor = "#8b0000";
 
     } else if(parseFloat(trendData[0]['trendValue'])<-0.2){
-        document.getElementById("trendData").innerHTML="Decreasing";
+        document.getElementById("trendData").innerHTML="घट्दै";
         document.getElementById("trendLabel").style.backgroundColor = "#49b675";
         document.getElementById("trendData").style.borderColor = "#49b675";
         document.getElementById("trendLabel").style.borderLeftColor = "#006038";
 
     } else{
-        document.getElementById("trendData").innerHTML="Steady";
+        document.getElementById("trendData").innerHTML="स्थिर";
         document.getElementById("trendLabel").style.backgroundColor = "#c3e4e8";
         document.getElementById("trendData").style.borderColor = "#c3e4e8";
         document.getElementById("trendLabel").style.borderLeftColor = "#31639c";
@@ -150,7 +201,7 @@ const allData = async () => {
             height:550,
         },
         xAxis: {
-            categories: ['<span>Water</span><br/>Level']
+            categories: ['<span>पानीको तह</span>']
         },
         yAxis: {
             plotBands: [{
@@ -227,7 +278,7 @@ const allData = async () => {
             height:550,
         },
         xAxis: {
-            categories: ['<span>No</span><br/>Data']
+            categories: ['<span>डाटा छैन</span>']
         },
         yAxis: {
             plotBands: [{

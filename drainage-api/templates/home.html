@@ -7,9 +7,9 @@
     <title>Drainage Warning System</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -27,14 +27,14 @@
                     <!-- Link -->
                     <li class="nav-item">
                         <div class="container d-flex">
-                            <label class="m-auto" style='color:white;' for="station">Choose Station:</label>
+                            <label class="m-auto" style='color:white;' for="station">स्थान छनौट गर्नुहोस्:</label>
                             <select name="station" id="station"></select>
-                            <button class="btn btn-info" id="dataBtn" onclick="allData()">Get Data</button>
+                            <button class="btn btn-info" id="dataBtn" onclick="allData()">डाटा खोजी</button>
                         </div>
                 </ul>
-            
+
             </div>
-            <div class="d-flex flex-row flex-row-reverse" >
+            <div class="d-flex flex-row flex-row-reverse">
                 <a class="nav-link" style='color:white;' href="/">Home</a>
                 <a class="nav-link" style='color:white;' href="/data">Statistics</a>
             </div>
@@ -57,81 +57,121 @@
             </div> 
         </div> -->
         <div class="row">
-            <div class="col-md-7" style='border: 0.2rem solid #3c89aa;'>
-                <div  style='border: 0.2rem solid #3c89aa;height:100%;display:flex;flex-direction: column;justify-content: space-between;'>
-                    <img src="static/img/DangerImage.gif" class="rounded mx-auto d-block" style='border: 0.2rem solid #3c89aa;' >
-                    
+            <div class="col-md-7" >
+                <div
+                    style='height:100%;display:flex;flex-direction: column;justify-content: space-around;'>
+
+                    <img src="static/img/map.png" class="map-img rounded mx-auto d-block"
+                        >
+
                     <div class="row">
-                        <div class="col-md-6" style='border: 0.2rem solid #3c89aa;'>
-                            <div class="label" >Community Help Numbers</div>
+                        
+                        <div class="col-md-6" >
+                            <ul class="list-unstyled">
+                                <li class="media my-1" style='justify-content: center;'>
+                                    <h4>समुदाय अधिकारी</h4>
+                                </li>
+                                <li class="media my-1 business-card">
+                                    <img class="mr-1 profile-img" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
+                                        alt="Generic placeholder image">
+                                    <div class="media-body">
+                                        <div class="label" id="communityHero1"></div>
+                                    </div>
+                                </li>
+                                <li class="media my-1 business-card">
+                                    <img class="mr-1 profile-img" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="Generic placeholder image">
+                                    <div class="media-body">
+                                        <div class="label" id="communityHero2"></div>
+                                    </div>
+                                </li>
+                            </ul>
+ 
+                            <!-- <div class="label">समुदाय अधिकारी</div>
                             <div class="label" id="communityHero1"></div>
-                            <div class="label" id="communityHero2"></div>
+                            <div class="label" id="communityHero2"></div> -->
                         </div>
-                        <div class="col-md-6" style='border: 0.2rem solid #3c89aa;'>
-                            <div class="label" id="x">Government Number</div>
-                            <div class="label" id="x">980XXXXXX</div>
-                            <div class="label" id="x">980XXXXXX</div>
+                        <div class="col-md-6" >
+                            <ul class="list-unstyled">
+                                <li class="media my-1" style='justify-content: center;'>
+                                    <h4>आपतकालिन सम्पर्क नम्बर</h4>
+                                </li>
+                                <li class="media my-1 business-card">
+                                    
+                                    <div class="media-body">
+                                        <div class="label" id="x">980XXXXXX</div>
+                                    </div>
+                                </li>
+                                <li class="media my-1 business-card">
+                                   
+                                    <div class="media-body">
+                                        <div class="label" id="x">980XXXXXX</div>
+                                    </div>
+                                </li>
+                            </ul>
+
                         </div>
                     </div>
 
                 </div>
 
-                
+
 
             </div>
-            <div class="col-md-1" style='border: 0.2rem solid #3c89aa;;'>
-                <figure class="highcharts-figure" >
-                    <div id="container1"  style='height:100%;'></div>
+            <div class="col-md-1" >
+                <figure class="highcharts-figure">
+                    <div id="container1" style='height:100%;'></div>
                 </figure>
             </div>
 
 
-            
-
-        
 
 
-            <div class="col-md-4" style='border: 0.2rem solid #3c89aa'>
-                <div style='border: 0.2rem solid #3c89aa;;display: flex;align-items: center;'>
-                    <img src="static/img/DangerImage.gif" class="rounded mx-auto d-block">
-                </div>
-                <div class="floodData"  style='border: 0.2rem solid #3c89aa;'>
+
+
+
+            <div class="col-md-4">
+                <div style='height:100%;display:flex;flex-direction: column;justify-content: space-around;'>
+              
+                <img src="static/img/DangerImage.gif" class="rounded mx-auto d-block" style='display: flex;align-items: center;'>
+              
+                <div class="floodData" >
                     <div>
-                        <div class="label" id="waterLabel">Water Level</div>
+                        <div class="label" id="waterLabel">पानिको सतह</div>
                         <div class="data" id="waterData">DataX</div>
                     </div>
-                    
+
                     <div>
-                        <div class="label" id="trendLabel">Trend</div>
+                        <div class="label" id="trendLabel">बहाव</div>
                         <div class="data" id="trendData">DataX</div>
                     </div>
                     <div>
-                        <div class="label" id="avgLabel">Average</div>
+                        <div class="label" id="avgLabel">औसत</div>
                         <div class="data" id="avgData">DataX</div>
                     </div>
                     <div>
-                        <div class="label">Time</div>
-                        <div class="data">Last 24hr</div>
+                        <div class="label" id='timerLabel'>अनुमानित समय</div>
+                        <div class="data" id='trendTimer'></div>
                     </div>
                 </div>
-                
+                </div>
+
             </div>
-            
+
 
 
         </div>
-        <div class="row floodData" style='border: 0.2rem solid #3c89aa;'>
-            
-                <div class="label" id="timeLabel"></div>
-            
-    </div>
-<!-- 
+        <div class="row floodData" >
+
+            <div class="label" id="timeLabel"></div>
+
+        </div>
+        <!-- 
     <div class="homeData">
          <div class="homeImage"></div>
         <div class="bullet-container">
             <div id="bulletGraph"></div>
         </div> -->
-<!--         
+        <!--         
         <div class="dataContainer">
             <div class="mapData">
                 img data
@@ -139,7 +179,7 @@
             <div class="chanceImg">
         
             </div> -->
-            <!-- <div class="floodData">
+        <!-- <div class="floodData">
                 <div>
                     <div class="label" id="waterLabel">Water Level</div>
                     <div class="data" id="waterData">DataX</div>
@@ -158,16 +198,17 @@
                 </div>
             </div> -->
         <!-- </div>
-    </div> --> 
+    </div> -->
 
-    <script src="{% static 'homeData.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/bullet.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="{% static 'homeData.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/bullet.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </body>
 
 </html>
-    
