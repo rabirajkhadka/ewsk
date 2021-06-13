@@ -10,15 +10,35 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+def upload_location(instance, filename):
+    filebase, extension = filename.split('.')
+    return 'assets/stationimg/%s.%s' % (instance.stationID, extension)
+
+
+def image_community1(instance, filename):
+    filebase, extension = filename.split('.')
+    return 'assets/stationimg/%s.%s' % (instance.stationID+'communityHero1', extension)
+
+
+def image_community2(instance, filename):
+    filebase, extension = filename.split('.')
+    return 'assets/stationimg/%s.%s' % (instance.stationID+'communityHero2', extension)
+
+
 class Station(models.Model):
     stationID = models.CharField(primary_key=True, max_length=255)
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     communityHero1 = models.CharField(
         max_length=255, default='John Doe, 980XXXXXX')
+    communityHero1Image = models.ImageField(
+        blank=True, null=True, upload_to=image_community1)
     communityHero2 = models.CharField(
         max_length=255, default='John Doe, 980XXXXXX')
-    # image = models.ImageField()
+    communityHero2Image = models.ImageField(
+        blank=True, null=True, upload_to=image_community2)
+    mapImage = models.ImageField(
+        blank=True, null=True, upload_to=upload_location)
 
     def __str__(self):
         return self.name

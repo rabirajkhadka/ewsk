@@ -41,7 +41,11 @@ const allData = async () => {
 
 
     //water Data
-    console.log(trendData);
+    console.log(numberData[0].mapImage.replace('assets','static'));
+
+    document.getElementById("stationMap").src = numberData[0].mapImage.replace('assets','static');
+    document.getElementById("imageCommunityHero1").src = numberData[0].communityHero1Image.replace('assets','static');
+    document.getElementById("imageCommunityHero2").src = numberData[0].communityHero2Image.replace('assets','static');
 
     
     function floodTimer() {
