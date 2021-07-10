@@ -5,7 +5,7 @@ from .models import Average, DataSet, Station, DrainageTrend
 class stationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Station
-        fields = ['stationID']
+        fields = '__all__'
 
 
 class stationNumberSerializer(serializers.ModelSerializer):

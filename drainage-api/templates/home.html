@@ -57,16 +57,45 @@
             </div> 
         </div> -->
         <div class="row">
-            <div class="col-md-7" >
-                <div
-                    style='height:100%;display:flex;flex-direction: column;justify-content: space-around;'>
+            <div class="col-md-6" >
+                <div style='overflow: hidden;height:100%;display:flex;flex-direction: column;justify-content: space-around;'>
 
-                    <img class="map-img rounded mx-auto d-block" id='stationMap'
-                        >
-
+                    <img class="map-img rounded mx-auto d-block" id='stationMap'>
                     <div class="row">
+                        <div class="col-md-6" style='overflow: hidden;'>
+                            <img src="static/img/DangerImage.gif" class="rounded mx-auto d-block" style='display: flex;align-items: center;'>
+                        </div>
+
+                        <div class="col-md-6" style='display: flex;justify-content: center;align-items: center;font-weight: bold;'>
+                            <div id="someText"></div>
+                        </div>
                         
-                        <div class="col-md-6" >
+
+                    </div>
+                    
+                    
+                    <div class="floodData">
+                        <div>
+                            <div class="label" id="waterLabel">पानिको सतह</div>
+                            <div class="data" id="waterData">DataX</div>
+                        </div>
+                    
+                        <div>
+                            <div class="label" id="trendLabel">बहाव</div>
+                            <div class="data" id="trendData">DataX</div>
+                        </div>
+                        <!-- <div>
+                                                <div class="label" id="avgLabel">औसत</div>
+                                                <div class="data" id="avgData">DataX</div>
+                                            </div> -->
+                        <div>
+                            <div class="label" id='timerLabel'>अनुमानित समय</div>
+                            <div class="data" id='trendTimer'></div>
+                        </div>
+                    </div>
+                    <!-- <div class="row"> -->
+                        
+                        <!-- <div class="col-md-6" >
                             <ul class="list-unstyled">
                                 <li class="media my-1" style='justify-content: center;'>
                                     <h4>समुदाय अधिकारी</h4>
@@ -85,12 +114,8 @@
                                     </div>
                                 </li>
                             </ul>
- 
-                            <!-- <div class="label">समुदाय अधिकारी</div>
-                            <div class="label" id="communityHero1"></div>
-                            <div class="label" id="communityHero2"></div> -->
-                        </div>
-                        <div class="col-md-6" >
+                        </div> -->
+                        <!-- <div class="col-md-6" >
                             <ul class="list-unstyled">
                                 <li class="media my-1" style='justify-content: center;'>
                                     <h4>आपतकालिन सम्पर्क नम्बर</h4>
@@ -109,8 +134,8 @@
                                 </li>
                             </ul>
 
-                        </div>
-                    </div>
+                        </div> -->
+                    <!-- </div> -->
 
                 </div>
 
@@ -129,30 +154,63 @@
 
 
 
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div style='height:100%;display:flex;flex-direction: column;justify-content: space-around;'>
-              
-                <img src="static/img/DangerImage.gif" class="rounded mx-auto d-block" style='display: flex;align-items: center;'>
-              
-                <div class="floodData" >
-                    <div>
-                        <div class="label" id="waterLabel">पानिको सतह</div>
-                        <div class="data" id="waterData">DataX</div>
+                    <div class="Average table-responsive">
+                    
+                        <table class="table table-primary table-striped table-bordered  table-hover" id="stationTable">
+                    
+                            <tr>
+                                <th>जल मापन केन्द्र</th>
+                                <th>अवलोकन कर्ताको नाम</th>
+                                <th>सम्पर्क नम्बर</th>
+                                <th>चेतावनी तह ( मि )</th>
+                                <th>खतरा तह ( मि )</th>
+                            </tr>
+                    
+                        </table>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6" style='overflow: hidden;'>
+                            <img src="static/img/emergencynumber.png" class="rounded mx-auto d-block"
+                                style='display: flex;align-items: center;width: 18rem;height: 27rem;'>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="Average table-responsive">
+                            
+                                <table class="table table-primary table-striped table-bordered  table-hover" id="globalTable">
+                            
+                                    <tr>
+                                        <th colspan="2">महत्त्वपूर्ण टेलिफोन नम्बर</th>
+                                    </tr>
+                                                                
+                                </table>
+                            </div>
+                        </div>
+                    
+                    
+                    </div>
+                    <!-- <img src="static/img/DangerImage.gif" class="rounded mx-auto d-block" style='display: flex;align-items: center;'>
+                
+                    <div class="floodData" >
+                        <div>
+                            <div class="label" id="waterLabel">पानिको सतह</div>
+                            <div class="data" id="waterData">DataX</div>
+                        </div>
 
-                    <div>
-                        <div class="label" id="trendLabel">बहाव</div>
-                        <div class="data" id="trendData">DataX</div>
-                    </div>
-                    <div>
-                        <div class="label" id="avgLabel">औसत</div>
-                        <div class="data" id="avgData">DataX</div>
-                    </div>
-                    <div>
-                        <div class="label" id='timerLabel'>अनुमानित समय</div>
-                        <div class="data" id='trendTimer'></div>
-                    </div>
-                </div>
+                        <div>
+                            <div class="label" id="trendLabel">बहाव</div>
+                            <div class="data" id="trendData">DataX</div>
+                        </div> -->
+                        <!-- <div>
+                            <div class="label" id="avgLabel">औसत</div>
+                            <div class="data" id="avgData">DataX</div>
+                        </div> -->
+                        <!-- <div>
+                            <div class="label" id='timerLabel'>अनुमानित समय</div>
+                            <div class="data" id='trendTimer'></div>
+                        </div>
+                    </div> -->
                 </div>
 
             </div>

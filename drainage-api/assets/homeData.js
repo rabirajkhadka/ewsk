@@ -22,13 +22,14 @@ const allData = async () => {
   
     // probabilityImage();
     try{
-
+    stationTable();
     const station=document.getElementById('station').value;
+    globalNumbersTable(station);
     const levelResponse = await fetch(`http://127.0.0.1:8000/api/datasetstation/${station}/?format=json`);
     const levelData = await levelResponse.json();
 
-    const averageResponse = await fetch(`http://127.0.0.1:8000/api/average/${station}/?format=json`);
-    const averageData = await averageResponse.json();
+    // const averageResponse = await fetch(`http://127.0.0.1:8000/api/average/${station}/?format=json`);
+    // const averageData = await averageResponse.json();
 
     const trendResponse = await fetch(`http://127.0.0.1:8000/api/trend/${station}/?format=json`);
     const trendData = await trendResponse.json();
@@ -36,19 +37,18 @@ const allData = async () => {
     const numberResponse = await fetch(`http://127.0.0.1:8000/api/stationNumber/${station}/?format=json`);
     const numberData = await numberResponse.json();
 
-
-   
-
-
     //water Data
-    console.log(numberData[0].mapImage.replace('assets','static'));
+    // console.log(numberData[0].mapImage.replace('assets','static'));
 
     document.getElementById("stationMap").src = numberData[0].mapImage.replace('assets','static');
-    document.getElementById("imageCommunityHero1").src = numberData[0].communityHero1Image.replace('assets','static');
-    document.getElementById("imageCommunityHero2").src = numberData[0].communityHero2Image.replace('assets','static');
+    document.getElementById("someText").innerHTML = numberData[0]['name']+' जल मापन केन्द्र';
+
+    // document.getElementById("imageCommunityHero1").src = numberData[0].communityHero1Image.replace('assets','static');
+    // document.getElementById("imageCommunityHero2").src = numberData[0].communityHero2Image.replace('assets','static');
 
     
     function floodTimer() {
+        
         let trendIndex;
 
         for (i = 0; i < trendData.length; i++) {
@@ -91,8 +91,8 @@ const allData = async () => {
         
 
     
-        document.getElementById("communityHero1").innerHTML=numberData[0]['communityHero1'];
-        document.getElementById("communityHero2").innerHTML=numberData[0]['communityHero2'];
+        // document.getElementById("communityHero1").innerHTML=numberData[0]['communityHero1'];
+        // document.getElementById("communityHero2").innerHTML=numberData[0]['communityHero2'];
 
 
         document.getElementById("timeLabel").style.backgroundColor = "#49b675";
@@ -100,17 +100,17 @@ const allData = async () => {
         document.getElementById("timeLabel").style.borderLeftColor = "#49b675";
         document.getElementById("timeLabel").innerHTML='डाटा प्राप्त भईरहेको छ । पछिल्लो पटक प्राप्त डाटा: '+ new Date(levelData[0]['dateTime']);
         document.getElementById("waterData").innerHTML=levelData[0]['drainageLevel'];
-    if (parseFloat(levelData[0]['drainageLevel'])>5){
+    if (parseFloat(levelData[0]['drainageLevel'])>parseFloat(numberData[0]['dangerLevel'])){
         
         document.getElementById("waterLabel").style.backgroundColor = "#ff726f";
         document.getElementById("waterData").style.borderColor = "#ff726f";
         document.getElementById("waterLabel").style.borderLeftColor = "#8b0000";
 
-    } else if(parseFloat(levelData[0]['drainageLevel'])<-5){
+    } else if(parseFloat(levelData[0]['drainageLevel'])>parseFloat(numberData[0]['warningLevel'])){
     
-        document.getElementById("waterLabel").style.backgroundColor = "#49b675";
-        document.getElementById("waterData").style.borderColor = "#49b675";
-        document.getElementById("waterLabel").style.borderLeftColor = "#006038";
+        document.getElementById("waterLabel").style.backgroundColor = "#f8fc14";
+        document.getElementById("waterData").style.borderColor = "#f8fc14";
+        document.getElementById("waterLabel").style.borderLeftColor = "#f8fc14";
 
     } else{
       
@@ -121,25 +121,25 @@ const allData = async () => {
 
     //Average Data
 
-    document.getElementById("avgData").innerHTML=averageData[0]['oneDay'];
-    if (parseFloat(averageData[0]['oneDay'])>5){
+    // document.getElementById("avgData").innerHTML=averageData[0]['oneDay'];
+    // if (parseFloat(averageData[0]['oneDay'])>5){
         
-        document.getElementById("avgLabel").style.backgroundColor = "#ff726f";
-        document.getElementById("avgData").style.borderColor = "#ff726f";
-        document.getElementById("avgLabel").style.borderLeftColor = "#8b0000";
+    //     document.getElementById("avgLabel").style.backgroundColor = "#ff726f";
+    //     document.getElementById("avgData").style.borderColor = "#ff726f";
+    //     document.getElementById("avgLabel").style.borderLeftColor = "#8b0000";
 
-    } else if(parseFloat(averageData[0]['oneDay'])<-5){
+    // } else if(parseFloat(averageData[0]['oneDay'])<-5){
     
-        document.getElementById("avgLabel").style.backgroundColor = "#49b675";
-        document.getElementById("avgData").style.borderColor = "#49b675";
-        document.getElementById("avgLabel").style.borderLeftColor = "#006038";
+    //     document.getElementById("avgLabel").style.backgroundColor = "#49b675";
+    //     document.getElementById("avgData").style.borderColor = "#49b675";
+    //     document.getElementById("avgLabel").style.borderLeftColor = "#006038";
 
-    } else{
+    // } else{
       
-        document.getElementById("avgLabel").style.backgroundColor = "#c3e4e8";
-        document.getElementById("avgData").style.borderColor = "#c3e4e8";
-        document.getElementById("avgLabel").style.borderLeftColor = "#31639c";
-    }
+    //     document.getElementById("avgLabel").style.backgroundColor = "#c3e4e8";
+    //     document.getElementById("avgData").style.borderColor = "#c3e4e8";
+    //     document.getElementById("avgLabel").style.borderLeftColor = "#31639c";
+    // }
 
     //trend Data
     if (parseFloat(trendData[0]['trendValue'])>0.2){
@@ -202,23 +202,23 @@ const allData = async () => {
     Highcharts.chart('container1', {
         chart: {
             marginTop: 40,
-            height:550,
+            height:900,
         },
         xAxis: {
             categories: ['<span>पानीको तह</span>']
         },
         yAxis: {
             plotBands: [{
-            from: -5,
-            to: 5,
+            from: parseFloat(numberData[0]['warningLevel']),
+            to: parseFloat(numberData[0]['dangerLevel']),
+            color: 'yellow'
+            }, {
+            from: -1000,
+            to: parseFloat(numberData[0]['warningLevel']),
             color: 'lightblue'
             }, {
-            from: -20,
-            to: -5,
-            color: 'lightgreen'
-            }, {
-            from: 5,
-            to: 20,
+            from: parseFloat(numberData[0]['dangerLevel']),
+            to: 1000,
             color: 'red'
             }],
             title: null
@@ -237,11 +237,12 @@ const allData = async () => {
      }
     
     catch(err){
+        console.log(err);
         document.getElementById("timeLabel").style.backgroundColor = "#ff726f";
         document.getElementById("timeLabel").style.borderColor = "#ff726f";
         document.getElementById("timeLabel").style.borderLeftColor = "#8b0000";
         document.getElementById("timeLabel").innerHTML='डाटा प्राप्त भईरहेको छैन । समस्या यस कम्प्युटरमा रहेको छ । समयको  डाटा छैन ।';
-        document.getElementById("avgData").innerHTML='डाटा छैन';
+        // document.getElementById("avgData").innerHTML='डाटा छैन';
         document.getElementById("trendData").innerHTML="डाटा छैन";
         document.getElementById("waterData").innerHTML='डाटा छैन';
         Highcharts.setOptions({
@@ -279,7 +280,7 @@ const allData = async () => {
     Highcharts.chart('container1', {
         chart: {
             marginTop: 40,
-            height:550,
+            height:900,
         },
         xAxis: {
             categories: ['<span>डाटा छैन</span>']
@@ -350,5 +351,81 @@ const allData = async () => {
     // Plotly.newPlot('bulletGraph', data, layout);
 
 }
+const stationTable = async () =>{
+        
+    const response = await fetch(`http://127.0.0.1:8000/api/station/`);
+    const stationData = await response.json();
+    let table = document.getElementById("stationTable");
+    console.log(table);
+    while(table.rows.length > 1) {
+        table.deleteRow(-1);
+    }
+
+    stationData.forEach((item)=>{
+        
+            let row = table.insertRow(-1);
+            
+            let cell1 = row.insertCell(0);
+            cell1.innerHTML=`${item["name"]}`;
+
+            let cell2 = row.insertCell(1);
+            cell2.innerHTML=`${item["EmergencyNumbersTitle"]}`;
+
+            let cell3 = row.insertCell(2);
+            cell3.innerHTML=`${item["EmergencyNumbers"]}`;
+
+            let cell4 = row.insertCell(3);
+            cell4.innerHTML=`${item["warningLevel"]}`;
+
+            let cell5 = row.insertCell(4);
+            cell5.innerHTML=`${item["dangerLevel"]}`;
+     
+
+    });
+}
+const globalNumbersTable = async (id) =>{
+    console.log(id);
+    const response = await fetch(`http://127.0.0.1:8000/api/stationNumber/${id}/`);
+    const stationData = await response.json();
+    let table = document.getElementById("globalTable");
+    console.log(table);
+    while(table.rows.length > 1) {
+        table.deleteRow(-1);
+    }
+    let allNames= stationData[0]['GlobalNames'].split(',');
+    let allNumbers= stationData[0]['GlobalNumbers'].split(',');
+    for (let i = 0; i < allNames.length; i++) {
+        let row = table.insertRow(-1);
+
+        let cell1 = row.insertCell(0);
+        cell1.innerHTML=`${allNames[i]}`;
+
+        let cell2 = row.insertCell(1);
+        cell2.innerHTML=`${allNumbers[i]}`;
+    }
+
+    // stationData.forEach((item)=>{
+        
+    //         let row = table.insertRow(-1);
+            
+    //         let cell1 = row.insertCell(0);
+    //         cell1.innerHTML=`${item["name"]}`;
+
+    //         let cell2 = row.insertCell(1);
+    //         cell2.innerHTML=`${item["EmergencyNumbersTitle"]}`;
+
+    //         let cell3 = row.insertCell(2);
+    //         cell3.innerHTML=`${item["EmergencyNumbers"]}`;
+
+    //         let cell4 = row.insertCell(3);
+    //         cell4.innerHTML=`${item["warningLevel"]}`;
+
+    //         let cell5 = row.insertCell(4);
+    //         cell5.innerHTML=`${item["dangerLevel"]}`;
+     
+
+    // });
+}
 comboBoxCreate();
+
 

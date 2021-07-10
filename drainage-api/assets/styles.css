@@ -1,4 +1,7 @@
-body {
+html * {
+  font-size: 1.3rem !important;
+
+  font-family: Arial !important;
 }
 
 /* ul {
@@ -34,6 +37,12 @@ a:hover:not(.active) {
   border: 0.2rem solid green;
   border-radius: 1rem;
   background-image: url("waterImage.jpg");
+  height: 8rem;
+}
+.emergencyNumberImage {
+  border: 0.2rem solid green;
+  border-radius: 1rem;
+  background-image: url("emergencynumber.png");
   height: 8rem;
 }
 /* .bullet-container {

@@ -25,8 +25,15 @@ SECRET_KEY = '%fn@vstl%f2$1^g_(q$o)#y(rw+hn+_53(g$7r28a92284p4c$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 300
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['127.0.0.1', 'ewsdashboard.ran.org.np']
 
 
 # Application definition

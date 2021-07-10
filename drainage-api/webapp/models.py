@@ -39,10 +39,29 @@ class Station(models.Model):
         blank=True, null=True, upload_to=image_community2)
     mapImage = models.ImageField(
         blank=True, null=True, upload_to=upload_location)
+    warningLevel = models.DecimalField(
+        max_digits=100, decimal_places=1, default=0.5)
+    dangerLevel = models.DecimalField(
+        max_digits=100, decimal_places=1, default=3.0)
+    EmergencyNumbers = models.CharField(
+        max_length=255, default='1234567')
+    EmergencyNumbersTitle = models.CharField(
+        max_length=255, default='test')
+    GlobalNames = models.TextField(
+        default='नेपाल प्रहरी,जिल्ला आपतकालीन कार्य संचालन केन्द्र,महाकाली बेसिन फिल्ड कार्यालय अत्तरिया,सशस्त्र प्रहरी वल नेपाल नं. ३५ गण')
+    GlobalNumbers = models.TextField(
+        default='१००,०९९-५२५२४५,०९१-५५०६२२,०९९-५४०१३३')
+    # EmergencyNumber4 = models.CharField(
+    #     max_length=255, default='1234567')
 
     def __str__(self):
         return self.name
 
+
+# class ImportantNumbers(models.Model):
+#     NepalPolice = models.CharField(max_length=255)
+#     DistrictEmergency = models.CharField(max_length=255)
+#     ZoneNumber = models.CharField(max_length=255)
 
 class DataSet(models.Model):
 
