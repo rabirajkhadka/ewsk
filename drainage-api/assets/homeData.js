@@ -1,3 +1,34 @@
+
+//language converter
+
+function convertToNepaliDigit(number) {
+    var number = number.toString();
+    var sliced = [];
+    var numberLength = number.length;
+    var nepali_digits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+    for (i = 0; i < numberLength; i++) {
+        sliced.push(nepali_digits[number.substr(number.length - 1)]);
+        number = number.slice(0, -1);
+    }
+    return sliced.reverse().join('').toString();
+}
+function convertToNepaliNumber(number) {
+    var number = number.toString();
+    var number_before_decimal = number.split(".")[0];
+    var number_after_decimal = number.split(".")[1];
+    var text1 = convertToNepaliDigit(number_before_decimal);
+    var text2 = "";
+    if (typeof number_after_decimal !== "undefined") {
+        text2 = convertToNepaliDigit(number_after_decimal);
+        return text1 + "." + text2;
+    }
+    else {
+        return text1;
+    }
+
+}
+
+//station selection
 const comboBoxCreate = async()=>{
     
     const response = await fetch('http://127.0.0.1:8000/api/station/?format=json');
@@ -7,7 +38,7 @@ const comboBoxCreate = async()=>{
     stationData.forEach((item)=>{
         let option = document.createElement("option");
         option.value = item['stationID'];
-        option.text = item['stationID'];
+        option.text = item['name'];
         select.add(option);
     });
     allData();
@@ -84,6 +115,8 @@ const allData = async () => {
                 
             // If the count down is over, write some text 
             if (distance < 0) {
+                console.log(distance);
+                clearInterval(x);
                 document.getElementById("trendTimer").innerHTML = "00:00!";
             }
         }, 1000);
@@ -99,7 +132,7 @@ const allData = async () => {
         document.getElementById("timeLabel").style.borderColor = "#49b675";
         document.getElementById("timeLabel").style.borderLeftColor = "#49b675";
         document.getElementById("timeLabel").innerHTML='डाटा प्राप्त भईरहेको छ । पछिल्लो पटक प्राप्त डाटा: '+ new Date(levelData[0]['dateTime']);
-        document.getElementById("waterData").innerHTML=levelData[0]['drainageLevel'];
+        document.getElementById("waterData").innerHTML=convertToNepaliNumber(levelData[0]['drainageLevel']);
     if (parseFloat(levelData[0]['drainageLevel'])>parseFloat(numberData[0]['dangerLevel'])){
         
         document.getElementById("waterLabel").style.backgroundColor = "#ff726f";
@@ -375,10 +408,10 @@ const stationTable = async () =>{
             cell3.innerHTML=`${item["EmergencyNumbers"]}`;
 
             let cell4 = row.insertCell(3);
-            cell4.innerHTML=`${item["warningLevel"]}`;
+            cell4.innerHTML=`${convertToNepaliNumber(item["warningLevel"])}`;
 
             let cell5 = row.insertCell(4);
-            cell5.innerHTML=`${item["dangerLevel"]}`;
+            cell5.innerHTML=`${convertToNepaliNumber(item["dangerLevel"])}`;
      
 
     });
