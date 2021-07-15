@@ -1,0 +1,137 @@
+html * {
+  font-size: 1.4rem !important;
+
+  font-family: Arial !important;
+}
+
+/* ul {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: black;
+  padding: 0.8rem 0rem;
+}
+a {
+  color: aliceblue;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+a:hover:not(.active) {
+  background-color: grey;
+}
+
+.active {
+  background-color: #4caf50;
+} */
+
+.homeData {
+  margin: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 0.2rem solid green;
+  border-radius: 1rem;
+}
+.homeImage {
+  border: 0.2rem solid green;
+  border-radius: 1rem;
+  background-image: url("waterImage.jpg");
+  height: 8rem;
+}
+.emergencyNumberImage {
+  border: 0.2rem solid green;
+  border-radius: 1rem;
+  background-image: url("emergencynumber.png");
+  height: 8rem;
+}
+/* .bullet-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border: 0.1rem solid green;
+  border-radius: 1rem;
+  height: 4rem;
+  overflow: hidden;
+}
+#bulletGraph {
+  position: absolute;
+  top: -5.5rem;
+  overflow: hidden;
+} */
+.chanceImg {
+  border: 0.2rem solid green;
+  border-radius: 1rem;
+  margin: 0.3rem;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.dataContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.3rem;
+}
+.dataContainer > div {
+  flex: 1;
+  margin: 0.2rem;
+  border: 0.2rem solid green;
+  border-radius: 1rem;
+}
+
+.floodData > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.label {
+  text-align: center;
+  margin: 1rem;
+  padding: 0.5rem;
+  border-left: 0.2rem solid grey;
+  background-color: lightgrey;
+  flex: 1;
+}
+.data {
+  margin: 1rem;
+  padding: 0.5rem;
+  border: 0.2rem solid lightgrey;
+  border-radius: 1rem;
+  flex: 1;
+  text-align: center;
+}
+table,
+th,
+td {
+  border: 0.1rem solid lightgray;
+}
+
+#container1 {
+  height: 7rem;
+}
+
+/*Business Card Css */
+.business-card {
+  border: 1px solid #cccccc;
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 4px;
+}
+.profile-img {
+  height: 60px;
+  border-radius: 50%;
+
+  background: white;
+}
+.job {
+  color: #666666;
+  font-size: 17px;
+}
+.mail {
+  font-size: 16px;
+}
+.map-img {
+  height: 400px;
+  width: 550px;
+  background: white;
+}
