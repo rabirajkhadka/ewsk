@@ -1,7 +1,8 @@
-numpy==1.20.1
-matplotlib==3.3.4
-pandas==1.2.2
-Django==3.2.4
-djangorestframework==3.12.4
-django-cors-headers==3.7.0
-django_cleanup==5.2.0
+numpy
+matplotlib
+pandas
+Django
+djangorestframework
+django-cors-headers
+django_cleanup
+mysqlclient
